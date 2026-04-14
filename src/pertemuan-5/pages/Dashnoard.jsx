@@ -1,56 +1,67 @@
-import { FaShoppingCart, FaTruck, FaBan, FaDollarSign } from "react-icons/fa";
+import { FaShoppingCart, FaTruck, FaBan, FaDollarSign, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 
 export default function Dashboard() {
     return (
         <div id="dashboard-container">
-            {/* 2️⃣ Menambahkan Komponen PageHeader */}
             <PageHeader />
 
-            {/* 3️⃣ Dashboard Grid Layout */}
             <div id="dashboard-grid" className="p-5 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 
-                {/* 4️⃣ Card Total Orders */}
-                <div id="dashboard-orders" className="flex items-center space-x-5 bg-white rounded-lg shadow-md p-4">
-                    <div id="orders-icon" className="bg-hijau rounded-full p-4">
+                {/* 1️⃣ Total Orders - Improvisasi: Hover & Trend */}
+                <div className="group flex items-center space-x-5 bg-white rounded-lg shadow-md p-4 transition-all hover:scale-105 cursor-pointer">
+                    <div className="bg-hijau rounded-full p-4 group-hover:rotate-12 transition-transform">
                         <FaShoppingCart className="text-3xl text-white" />
                     </div>
-                    <div id="orders-info" className="flex flex-col">
-                        <span id="orders-count" className="text-2xl font-bold">75</span>
-                        <span id="orders-text" className="text-gray-400">Total Orders</span>
+                    <div className="flex flex-col">
+                        <span className="text-2xl font-bold">75</span>
+                        <span className="text-gray-400 text-sm">Total Orders</span>
+                        {/* IMPROVISASI: Badge Trend */}
+                        <span className="text-xs text-green-500 font-bold flex items-center mt-1">
+                            <FaArrowUp className="mr-1"/> 12%
+                        </span>
                     </div>
                 </div>
 
-                {/* Card Total Delivered */}
-                <div id="dashboard-delivered" className="flex items-center space-x-5 bg-white rounded-lg shadow-md p-4">
-                    <div id="delivered-icon" className="bg-blue-500 rounded-full p-4">
+                {/* 2️⃣ Total Delivered - Improvisasi: Hover & Trend */}
+                <div className="group flex items-center space-x-5 bg-white rounded-lg shadow-md p-4 transition-all hover:scale-105 cursor-pointer">
+                    <div className="bg-blue-500 rounded-full p-4 group-hover:rotate-12 transition-transform">
                         <FaTruck className="text-3xl text-white" />
                     </div>
-                    <div id="delivered-info" className="flex flex-col">
-                        <span id="delivered-count" className="text-2xl font-bold">175</span>
-                        <span id="delivered-text" className="text-gray-400">Total Delivered</span>
+                    <div className="flex flex-col">
+                        <span className="text-2xl font-bold">175</span>
+                        <span className="text-gray-400 text-sm">Total Delivered</span>
+                        <span className="text-xs text-green-500 font-bold flex items-center mt-1">
+                            <FaArrowUp className="mr-1"/> 8%
+                        </span>
                     </div>
                 </div>
 
-                {/* Card Total Canceled */}
-                <div id="dashboard-canceled" className="flex items-center space-x-5 bg-white rounded-lg shadow-md p-4">
-                    <div id="canceled-icon" className="bg-red-500 rounded-full p-4">
+                {/* 3️⃣ Total Canceled - Improvisasi: Hover & Trend */}
+                <div className="group flex items-center space-x-5 bg-white rounded-lg shadow-md p-4 transition-all hover:scale-105 cursor-pointer">
+                    <div className="bg-red-500 rounded-full p-4 group-hover:rotate-12 transition-transform">
                         <FaBan className="text-3xl text-white" />
                     </div>
-                    <div id="canceled-info" className="flex flex-col">
-                        <span id="canceled-count" className="text-2xl font-bold">40</span>
-                        <span id="canceled-text" className="text-gray-400">Total Canceled</span>
+                    <div className="flex flex-col">
+                        <span className="text-2xl font-bold">40</span>
+                        <span className="text-gray-400 text-sm">Total Canceled</span>
+                        <span className="text-xs text-red-500 font-bold flex items-center mt-1">
+                            <FaArrowDown className="mr-1"/> 2%
+                        </span>
                     </div>
                 </div>
 
-                {/* Card Total Revenue */}
-                <div id="dashboard-revenue" className="flex items-center space-x-5 bg-white rounded-lg shadow-md p-4">
-                    <div id="revenue-icon" className="bg-yellow-500 rounded-full p-4">
+                {/* 4️⃣ Total Revenue - Improvisasi: Hover & Trend */}
+                <div className="group flex items-center space-x-5 bg-white rounded-lg shadow-md p-4 transition-all hover:scale-105 cursor-pointer">
+                    <div className="bg-yellow-500 rounded-full p-4 group-hover:rotate-12 transition-transform">
                         <FaDollarSign className="text-3xl text-white" />
                     </div>
-                    <div id="revenue-info" className="flex flex-col">
-                        <span id="revenue-amount" className="text-2xl font-bold">Rp.128</span>
-                        <span id="revenue-text" className="text-gray-400">Total Revenue</span>
+                    <div className="flex flex-col">
+                        <span className="text-2xl font-bold">Rp.128</span>
+                        <span className="text-gray-400 text-sm">Total Revenue</span>
+                        <span className="text-xs text-green-500 font-bold flex items-center mt-1">
+                            <FaArrowUp className="mr-1"/> 15%
+                        </span>
                     </div>
                 </div>
 
