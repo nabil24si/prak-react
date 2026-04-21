@@ -5,7 +5,6 @@ import Sidebar from './layouts/Sidebar';
 import Header from './layouts/Header';
 import Dashboard from './pages/Dashnoard';
 import './assets/tailwind.css';
-import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import Customers from './pages/Customers';
 import Orders from './pages/Orders';

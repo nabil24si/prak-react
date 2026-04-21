@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader";
 export default function Customers() {
     return (
         <div id="dashboard-container">
-            <PageHeader />
+            <PageHeader title = "Customers" />
         <p>Halaman Customer</p>
            
         </div>

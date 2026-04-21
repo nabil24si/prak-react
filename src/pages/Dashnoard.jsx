@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader";
 export default function Dashboard() {
     return (
         <div id="dashboard-container">
-            <PageHeader />
+            <PageHeader title="Dashboard"/>
 
             <div id="dashboard-grid" className="p-5 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
                 

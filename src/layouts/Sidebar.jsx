@@ -1,9 +1,15 @@
 import React from 'react';
 // 1. Mengubah import icon sesuai gambar dosen
 import { FaThLarge, FaListUl, FaHeadset, FaPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Sidebar() {
+        const menuClass = ({ isActive }) =>
+        `flex cursor-pointer items-center rounded-xl p-4  space-x-2
+        ${isActive ? 
+            "text-hijau bg-green-200 font-extrabold" : 
+            "text-gray-600 hover:text-hijau hover:bg-green-200 hover:font-extrabold"
+        }`
     return (
         <div id="sidebar" className="flex min-h-screen w-[320px] flex-col bg-white p-8 shadow-lg z-10">
             
@@ -21,22 +27,22 @@ export default function Sidebar() {
             <div id="sidebar-menu" className="mt-8">
                 <ul id="menu-list" className="space-y-2">
                     <li>
-                        <Link id="menu-1" className="flex cursor-pointer items-center rounded-xl p-3 font-medium text-gray-600 hover:bg-green-50 hover:text-hijau">
+                        <NavLink id="menu-1" to="/" className={menuClass}>
                             <FaThLarge className="mr-4 text-lg" />
                             Dashboard
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link id="menu-2" className="flex cursor-pointer items-center rounded-xl p-3 font-medium text-gray-600 hover:bg-green-50 hover:text-hijau">
+                        <NavLink id="menu-2" to="/orders" className={menuClass}>
                             <FaListUl className="mr-4 text-lg" />
                             Orders
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link id="menu-3" className="flex cursor-pointer items-center rounded-xl p-3 font-medium text-gray-600 hover:bg-green-50 hover:text-hijau">
+                        <NavLink id="menu-3" to="/customers" className={menuClass}>
                             <FaHeadset className="mr-4 text-lg" />
                             Customers
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </div>
