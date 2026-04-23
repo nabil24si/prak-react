@@ -1,33 +1,29 @@
-export default function PageHeader(props) {
+// components/PageHeader.jsx
+export default function PageHeader({ title, breadcrumb, children }) {
     return (
-        <div id="pageheader-container" className="flex items-center justify-between p-4">
-            
-            {/* 3️⃣ Sisi Kiri (Title & Breadcrumb) */}
+        <div id="pageheader-container" className="flex items-center justify-between p-4 bg-white shadow-sm">
+            {/* Sisi Kiri (Title & Breadcrumb) */}
             <div id="pageheader-left" className="flex flex-col">
                 <span id="page-title" className="text-3xl font-semibold text-gray-800">
-                    {props.title}
+                    {title}
                 </span>
                 <div id="breadcrumb-links" className="flex items-center font-medium space-x-2 mt-2">
-                    <span id="breadcrumb-home" className="text-gray-500 cursor-pointer hover:text-hijau">
-                        {props.title}
-                    </span>
-                    <span id="breadcrumb-separator" className="text-gray-500">
-                        /
-                    </span>
-                    <span id="breadcrumb-current" className="text-gray-500">
-                        Order List
-                    </span>
+                    {Array.isArray(breadcrumb) ? (
+                        breadcrumb.map((item, index) => (
+                            <div key={index} className="flex items-center space-x-2">
+                                <span className="text-gray-500 cursor-pointer hover:text-green-600">{item}</span>
+                                {index < breadcrumb.length - 1 && <span className="text-gray-400">/</span>}
+                            </div>
+                        ))
+                    ) : (
+                        <span className="text-gray-500">{breadcrumb}</span>
+                    )}
                 </div>
             </div>
 
-            {/* 4️⃣ Sisi Kanan (Action Button) */}
+            {/* Sisi Kanan (Slot untuk tombol Add) */}
             <div id="action-button">
-                <button 
-                    id="add-button" 
-                    className="bg-hijau text-white px-6 py-2 rounded-lg font-semibold shadow-md hover:opacity-90 transition-opacity"
-                >
-                    + Add New Order
-                </button>
+                {children}
             </div>
         </div>
     );

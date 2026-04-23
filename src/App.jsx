@@ -23,6 +23,9 @@ function App() {
     
     <Routes>
         <Route path="*" element={<NotFound />} />
+        <Route path="/error-400" element={<NotFound code="400" description="Bad Request: Permintaan tidak valid." />} />
+        <Route path="/error-401" element={<NotFound code="401" description="Unauthorized: Silahkan login terlebih dahulu." />} />
+        <Route path="/error-403" element={<NotFound code="403" description="Forbidden: Anda tidak punya akses ke sini." />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />

@@ -1,103 +1,72 @@
-import { FaSearch, FaHome, FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import PageHeader from "../components/PageHeader";
-import { useEffect, useState } from "react";
+// src/components/ErrorPage.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaGlobeAmericas } from "react-icons/fa";
 
-export default function NotFound() {
-    const [animate, setAnimate] = useState(false);
+export default function ErrorPage({ code = "404", description = "It's Look like you're lost", image }) {
+  // Mengambil angka pertama (misal: 4) dan angka terakhir (misal: 0, 1, 3, atau 4)
+  const codeStr = code.toString();
+  const firstDigit = codeStr.charAt(0);
+  const lastDigit = codeStr.charAt(codeStr.length - 1);
 
-    useEffect(() => {
-        setAnimate(true);
-    }, []);
+  return (
+    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center justify-center p-4 relative overflow-hidden">
+      
+      {/* Efek Lingkaran Background (Radial Rings) */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none">
+        <div className="absolute rounded-full border border-gray-700 w-[500px] h-[500px]"></div>
+        <div className="absolute rounded-full border border-gray-700 w-[700px] h-[700px]"></div>
+        <div className="absolute rounded-full border border-gray-700 w-[900px] h-[900px]"></div>
+      </div>
 
-    return (
-        <div id="dashboard-container" className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-            <PageHeader title="Halaman Tidak Ditemukan" />
-            
-            <div className="flex items-center justify-center px-4 py-12 md:py-20">
-                <div className="text-center max-w-2xl mx-auto">
-                    {/* Animasi 404 dengan efek floating */}
-                    <div className={`transform transition-all duration-1000 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <div className="relative inline-block">
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-                            <h1 className="text-8xl md:text-9xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent animate-bounce">
-                                404
-                            </h1>
-                        </div>
-                    </div>
+      {/* Efek Bintang-bintang Kecil */}
+      <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-white rounded-full opacity-70"></div>
+      <div className="absolute top-1/3 right-1/4 w-1 h-1 bg-white rounded-full opacity-60"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-white rounded-full opacity-80"></div>
+      <div className="absolute top-1/2 left-[10%] w-1 h-1 bg-white rounded-full opacity-50"></div>
+      <div className="absolute bottom-1/3 right-[15%] w-1 h-1 bg-white rounded-full opacity-60"></div>
 
-                    {/* Icon dengan animasi spin dan pulse */}
-                    <div className={`my-6 transform transition-all duration-1000 delay-300 ${animate ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}>
-                        <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg animate-pulse">
-                            <FaExclamationTriangle className="text-4xl text-white animate-spin-slow" />
-                        </div>
-                    </div>
+      {/* Konten Utama */}
+      <div className="relative z-10 flex flex-col items-center text-white">
+        
+        {/* Tampilan Besar (Contoh: 4 [Bumi] 1) */}
+        <div className="flex items-center space-x-2 md:space-x-6 mb-8">
+          <span className="text-[120px] md:text-[180px] font-extrabold leading-none select-none">
+            {firstDigit}
+          </span>
+          
+          {/* Ikon Bumi atau Gambar Error dari Props */}
+          <div className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] flex items-center justify-center">
+            {image ? (
+              <img src={image} alt="Error status" className="w-full h-full object-contain" />
+            ) : (
+              <FaGlobeAmericas className="text-[#8ACC33] text-8xl md:text-9xl animate-pulse shadow-[0_0_50px_rgba(138,204,51,0.3)] rounded-full" />
+            )}
+          </div>
 
-                    {/* Pesan error dengan animasi slide */}
-                    <div className={`space-y-4 transform transition-all duration-1000 delay-500 ${animate ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-                        <h2 className="text-2xl md:text-3xl font-semibold text-gray-800">
-                            Oops! Halaman Tidak Ditemukan
-                        </h2>
-                        <p className="text-gray-600 text-lg">
-                            Maaf, halaman yang Anda cari tidak tersedia atau telah dipindahkan.
-                        </p>
-                        <p className="text-gray-500">
-                            Silakan periksa kembali URL atau kembali ke halaman utama.
-                        </p>
-                    </div>
-
-                    {/* Tombol aksi dengan animasi hover */}
-                    <div className={`mt-8 space-x-4 transform transition-all duration-1000 delay-700 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <Link 
-                            to="/" 
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl hover:from-blue-700 hover:to-blue-800"
-                        >
-                            <FaHome className="text-lg" />
-                            Beranda
-                        </Link>
-                        <button 
-                            onClick={() => window.history.back()} 
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-600 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-gray-700"
-                        >
-                            <FaArrowLeft className="text-lg" />
-                            Kembali
-                        </button>
-                    </div>
-
-                    {/* Saran halaman */}
-                    <div className={`mt-12 p-6 bg-white rounded-xl shadow-md transform transition-all duration-1000 delay-900 ${animate ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-                        <p className="text-gray-700 font-medium mb-3">Atau coba halaman berikut:</p>
-                        <div className="flex flex-wrap justify-center gap-3">
-                            <Link to="/products" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors">
-                                Produk
-                            </Link>
-                            <span className="text-gray-300">|</span>
-                            <Link to="/cart" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors">
-                                Keranjang
-                            </Link>
-                            <span className="text-gray-300">|</span>
-                            <Link to="/contact" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors">
-                                Kontak
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Tambahkan custom CSS untuk animasi spin-slow */}
-            <style jsx>{`
-                @keyframes spin-slow {
-                    from {
-                        transform: rotate(0deg);
-                    }
-                    to {
-                        transform: rotate(360deg);
-                    }
-                }
-                .animate-spin-slow {
-                    animation: spin-slow 3s linear infinite;
-                }
-            `}</style>
+          <span className="text-[120px] md:text-[180px] font-extrabold leading-none select-none">
+            {lastDigit}
+          </span>
         </div>
-    );
+
+        {/* Teks Pesan Dinamis */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-200 mb-3 uppercase tracking-wider">
+            Whoops... {code}
+          </h2>
+          <p className="text-lg md:text-xl text-gray-500 font-medium max-w-md">
+            {description}
+          </p>
+        </div>
+
+        {/* Tombol Back to Home */}
+        <Link 
+          to="/" 
+          className="text-lg font-semibold text-[#8ACC33] hover:text-[#a4e644] transition-all duration-300 border-b-2 border-transparent hover:border-[#a4e644] pb-1"
+        >
+          Go To Home
+        </Link>
+      </div>
+    </div>
+  );
 }
