@@ -3,7 +3,7 @@ import { FaPlus, FaBarcode } from "react-icons/fa";
 import PageHeader from "../components/PageHeader";
 
 // Import data dari file JSON yang baru dibuat
-import productData from "../data/products.json";
+import productData from "../data/Products.json";
 import { Link } from "react-router-dom";
 
 export default function Products() {
