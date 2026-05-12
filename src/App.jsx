@@ -5,6 +5,7 @@ const Dashboard = React.lazy(() => import("./pages/Dashnoard"))
 import './assets/tailwind.css';
 import { Route, Routes } from 'react-router-dom';
 import Loading from './components/Loading';
+import Products from './pages/Products';
 // import Customers from './pages/Customers';
 const Customers = React.lazy(() => import("./pages/Customers"))
 // import Orders from './pages/Orders';
@@ -21,6 +22,7 @@ const Login = React.lazy(() => import("./pages/auth/Login"))
 const Register = React.lazy(() => import("./pages/auth/Register"))
 // import Forgot from './pages/auth/Forget';
 const Forgot = React.lazy(() => import("./pages/auth/Forget"))
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail.jsx"))
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
         <Route path="/" element={<Dashboard />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/customers" element={<Customers />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         </Route>
 
         <Route element={<AuthLayout/>}>

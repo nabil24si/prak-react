@@ -1,3 +1,4 @@
+import { CgProductHunt } from "react-icons/cg"; 
 import React from 'react';
 // 1. Mengubah import icon sesuai gambar dosen
 import { FaThLarge, FaListUl, FaHeadset, FaPlus } from 'react-icons/fa';
@@ -42,6 +43,12 @@ export default function Sidebar() {
                         <NavLink id="menu-3" to="/customers" className={menuClass}>
                             <FaHeadset className="mr-4 text-lg" />
                             Customers
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink id="menu-4" to="/products" className={menuClass}>
+                            <CgProductHunt className="mr-4 text-lg" />
+                            Products
                         </NavLink>
                     </li>
                 </ul>
