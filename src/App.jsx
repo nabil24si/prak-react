@@ -1,42 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import Sidebar from './layouts/Sidebar';
-// import Header from './layouts/Header';
-import Dashboard from './pages/Dashnoard';
-import './assets/tailwind.css';
-import { Route, Routes } from 'react-router-dom';
-import Customers from './pages/Customers';
-import Orders from './pages/Orders';
-import NotFound from './pages/NotFound';
-import ComponentsPage from './pages/Components';
+import React, { Suspense, useState } from "react";
+import "./assets/tailwind.css";
+import { Route, Routes } from "react-router-dom";
 
+// Components
+import Loading from "./components/Loading";
+import FiturXyz from "./pages/FiturXyz";
 
+// Lazy Imports (Pastikan nama file di folder pages sesuai)
+const Dashboard = React.lazy(() => import("./pages/Dashnoard"));
+const Orders = React.lazy(() => import("./pages/Orders"));
+const Products = React.lazy(() => import("./pages/Products")); 
+const Customers = React.lazy(() => import("./pages/Customers"));
+
+const MainLayout = React.lazy(() => import("./layouts/MainLayout"));
+const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
+const Login = React.lazy(() => import("./pages/Auth/Login"));
+const Register = React.lazy(() => import("./pages/Auth/Register"));
+const Forgot = React.lazy(() => import("./pages/Auth/Forget"));
+const ProductDetail = React.lazy(() => import("./pages/ProductDetail"));
+// TAMBAHAN BARU: Import halaman Components
+const ComponentsPage = React.lazy(() => import("./pages/Components")); 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-   <div className="flex min-h-screen bg-gray-50">
-    {/* 1. Sidebar ada di sisi kiri */}
-    <Sidebar />
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        {/* Main App Routes */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/products" element={<Products />} /> 
+          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/customers" element={<Customers />} />
+          {/* TAMBAHAN BARU: Route untuk halaman Components */}
+          <Route path="/components" element={<ComponentsPage />} /> 
+          <Route path="/fitur-xyz" element={<FiturXyz />} />
+        
+        </Route>
 
-    <div className="flex-1 p-4">
-    <Header />
-    
-    <Routes>
-        <Route path="*" element={<NotFound />} />
-        <Route path="/error-400" element={<NotFound code="400" description="Bad Request: Permintaan tidak valid." />} />
-        <Route path="/error-401" element={<NotFound code="401" description="Unauthorized: Silahkan login terlebih dahulu." />} />
-        <Route path="/error-403" element={<NotFound code="403" description="Forbidden: Anda tidak punya akses ke sini." />} />
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/components" element={<ComponentsPage />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/customers" element={<Customers />} />
-    </Routes>
-</div>
-  </div>
-  )
+        {/* Auth Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot" element={<Forgot />} />
+        </Route>
+      </Routes>
+    </Suspense>
+  );
 }
 
-export default App
+export default App;

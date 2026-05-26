@@ -51,6 +51,12 @@ export default function Sidebar() {
                             Products
                         </NavLink>
                     </li>
+                     <li>
+                        <NavLink id="menu-5" to="/fitur-xyz" className={menuClass}>
+                            <CgProductHunt className="mr-4 text-lg" />
+                            Fitur Xyz
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
 
