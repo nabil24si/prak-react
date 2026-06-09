@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 // Components
 import Loading from "./components/Loading";
 import FiturXyz from "./pages/FiturXyz";
+import Notes from "./pages/Notes";
 
 // Lazy Imports (Pastikan nama file di folder pages sesuai)
 const Dashboard = React.lazy(() => import("./pages/Dashnoard"));
@@ -35,7 +36,7 @@ function App() {
           {/* TAMBAHAN BARU: Route untuk halaman Components */}
           <Route path="/components" element={<ComponentsPage />} /> 
           <Route path="/fitur-xyz" element={<FiturXyz />} />
-        
+          <Route path="/notes" element={<Notes />} />
         </Route>
 
         {/* Auth Routes */}

@@ -45,6 +45,8 @@ export default function FiturXyz() {
           <Button variant="outline">Batal</Button>
         </CardFooter>
       </Card>
+
+      
     </div>
   );
 }
