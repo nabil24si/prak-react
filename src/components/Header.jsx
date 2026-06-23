@@ -1,11 +1,18 @@
-import { useState } from "react"; // 1. Tambahkan useState
-import { FaBell, FaSearch, FaHistory } from "react-icons/fa"; // Tambah ikon FaHistory
+import { useState } from "react";
+import { FaBell, FaSearch, FaHistory, FaSignOutAlt } from "react-icons/fa";
 import { FcAreaChart } from "react-icons/fc";
 import { SlSettings } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 export default function Header() {
-    // 2. Buat state untuk mengontrol Modal
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        navigate("/login");
+    };
 
     return (
         <div id="header-container" className="flex justify-between items-center p-4">
@@ -87,7 +94,17 @@ export default function Header() {
                 <div id="settings-icon" className="p-3 bg-red-100 rounded-2xl text-red-500 cursor-pointer hover:bg-red-200 transition-colors">
                     <SlSettings />
                 </div>
-             
+
+                {/* Logout Button */}
+                <button
+                    onClick={handleLogout}
+                    id="logout-button"
+                    className="p-3 bg-gray-100 rounded-2xl text-gray-500 cursor-pointer hover:bg-red-100 hover:text-red-600 transition-colors"
+                    title="Logout"
+                >
+                    <FaSignOutAlt />
+                </button>
+              
                 <div id="profile-container" className="flex items-center space-x-4 border-l pl-4 border-gray-300">
                     <span id="profile-text" className="text-gray-700 hidden md:block">
                         Hello, <b>Nabil Sahendra</b>
